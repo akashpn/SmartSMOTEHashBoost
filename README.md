@@ -21,15 +21,23 @@ pip install -r requirements.txt
 
 ## 2. Project structure
 
-- `src/`
-  - `baseline_models.py` – plain AdaBoost and simple SMOTE-based baselines.
-  - `smart_smote_hashboost.py` – Smart-SMOTE HashBoost implementation (safety-aware SMOTE + hash-based undersampling + AdaBoost).
-  - `evaluation.py` – metrics (F1, precision, recall, G-mean, AUC, etc.) and comparison utilities.
-  - `utils.py` – data loading, preprocessing, and results-saving helpers.
-- `experiments/`
-  - `run_all_experiments.py` – main entry point to run experiments on a synthetic imbalanced dataset.
-- `notebooks/`
-  - `03_your_model_experiments.ipynb` – place for interactive exploration, plots, and ablation studies.
+```
+SmartSMOTEHashBoost/
+├── src/                          # Core algorithm implementations
+│   ├── baseline_models.py        # Plain AdaBoost, SMOTE+AdaBoost baselines
+│   ├── smart_smote_hashboost.py  # Smart-SMOTE HashBoost + CS-Borderline variant
+│   ├── evaluation.py             # Metrics (F1, G-Mean, AUC, etc.)
+│   └── utils.py                 # Data loading, preprocessing utilities
+├── experiments/
+│   └── run_all_experiments.py   # Synthetic dataset experiments
+├── data/                         # Place your CSV datasets here (CSVs ignored by git)
+├── results/                      # Experiment results (auto-generated, ignored by git)
+├── run_csv_experiment.py        # Generic CSV dataset runner
+├── download_datasets.py         # Auto-download real datasets
+├── setup_git.py                 # Automated git/GitHub setup
+├── requirements.txt             # Python dependencies
+└── README.md                    # This file
+```
 
 ## 3. Running the experiments
 

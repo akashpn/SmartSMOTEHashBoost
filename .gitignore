@@ -7,6 +7,7 @@ __pycache__/
 *.egg-info/
 dist/
 build/
+*.egg
 
 # Virtual Environment
 .venv/
@@ -19,18 +20,41 @@ env/
 .idea/
 *.swp
 *.swo
+*.sublime-*
 
-# Data (optional - uncomment if you don't want to commit datasets)
-# data/*.csv
+# Data - keep .gitkeep but ignore CSV files (uncomment to track CSVs)
+data/*.csv
+data/*.xlsx
+data/*.xls
 
-# Results
-results/
+# Results - keep .gitkeep but ignore all result files
+results/**/*
+!results/.gitkeep
+!results/tables/.gitkeep
+
+# Model files
 *.pkl
 *.h5
+*.joblib
+*.model
 
 # Jupyter
 .ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# Large PDFs (research papers - keep locally, don't commit)
+*.pdf
 
 # OS
 .DS_Store
 Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+~$*

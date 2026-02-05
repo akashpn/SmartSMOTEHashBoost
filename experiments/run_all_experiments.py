@@ -4,8 +4,10 @@ Run all experiments and save results
 """
 
 import sys
+from pathlib import Path
 
-sys.path.append("..")
+# Add parent directory to path
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 import numpy as np
 import pandas as pd
@@ -152,7 +154,7 @@ def main():
         all_experiments.extend(results)
 
     # Save all results
-    save_results_to_csv(all_experiments, "../results/tables/all_experiments.csv")
+    save_results_to_csv(all_experiments, "results/tables/all_experiments.csv")
 
     print("\n✅ All experiments completed!")
     print("📁 Results saved to: results/tables/all_experiments.csv")
