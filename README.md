@@ -33,22 +33,44 @@ pip install -r requirements.txt
 
 ## 3. Running the experiments
 
+### Option A: Synthetic dataset (quick test)
+
 From the project root:
 
 ```bash
 python -m experiments.run_all_experiments
 ```
 
-This will:
+This will create a synthetic imbalanced dataset and compare all models.
 
-- Create a synthetic imbalanced dataset.
-- Train and evaluate:
-  - Plain AdaBoost
-  - SMOTE + AdaBoost
-  - SMOTE + Random Undersampling + AdaBoost
-  - Smart-SMOTE HashBoost (your improved model)
-- Print evaluation metrics and comparison tables.
-- Save all experiment results to `results/tables/all_experiments.csv`.
+### Option B: Real datasets
+
+1. **Download real datasets automatically:**
+   ```bash
+   python download_datasets.py
+   ```
+
+2. **Run experiments on any CSV:**
+   ```bash
+   # Credit Card Default
+   python run_csv_experiment.py --csv data/credit_card_default.csv --target default
+   
+   # Breast Cancer (uses last column automatically)
+   python run_csv_experiment.py --csv data/breast_cancer.csv
+   
+   # Any other CSV
+   python run_csv_experiment.py --csv path/to/your_data.csv --target label_column
+   ```
+
+### Models compared:
+
+- Plain AdaBoost
+- SMOTE + AdaBoost
+- SMOTE + Random Undersampling + AdaBoost
+- Smart-SMOTE HashBoost (safety-aware SMOTE + hash undersampling)
+- **Cost-Sensitive Borderline-SMOTE HashBoost** (improved variant)
+
+All results are printed with metrics (F1, Precision, Recall, G-Mean, AUC-ROC).
 
 ## 4. Extending the project
 
@@ -60,4 +82,27 @@ Suggested extensions you can implement for your final-year project:
 - Add real-world imbalanced datasets (e.g., medical, fraud, dropout prediction) and run full comparisons.
 
 Use the existing `SmartSMOTEHashBoost` class as your starting point and add new variants alongside it (e.g. `CostSensitiveSMOTEHashBoost`, `BorderlineSMOTEHashBoost`), then wire them into `run_all_experiments.py` and the notebook.
+
+## 5. Git & GitHub Setup
+
+To commit your changes and push to GitHub:
+
+```bash
+python setup_git.py
+```
+
+This script will:
+- Initialize git repository (if needed)
+- Add all files and create initial commit
+- Guide you through connecting to GitHub
+- Push to GitHub (if remote is configured)
+
+Or manually:
+```bash
+git init
+git add .
+git commit -m "Initial commit: Smart-SMOTE HashBoost implementation"
+git remote add origin https://github.com/YOUR_USERNAME/SmartSMOTEHashBoost.git
+git push -u origin main
+```
 
